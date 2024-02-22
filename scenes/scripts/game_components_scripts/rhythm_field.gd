@@ -7,9 +7,6 @@ func _ready():
 	var center = _get_map_size()
 	_create_player(center)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta):
-	pass
 
 func _get_map_size() -> Vector2:
 	#get the size of the rhythm_field node
@@ -23,5 +20,3 @@ func _create_player(center):
 	var player_scene = player.instantiate()
 	add_child(player_scene)
 	player_scene.position = center
-
-

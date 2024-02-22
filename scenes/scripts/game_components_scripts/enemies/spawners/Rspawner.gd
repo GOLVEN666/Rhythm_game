@@ -9,11 +9,6 @@ func _ready():
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
 func _create_enemy():
 	var enemy_scene = enemy_packed.instantiate()
 	get_parent().add_child(enemy_scene)
