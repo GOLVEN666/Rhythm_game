@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/scripts/game_components_scripts/rhythm_field.gd" id="1_6aclv"]
 [ext_resource type="Texture2D" uid="uid://ekmmt3yn3dk0" path="res://assets/Tilemap_Flat.png" id="1_ecxlm"]
 [ext_resource type="PackedScene" uid="uid://3xfwheo2wdfy" path="res://scenes/game_components/player.tscn" id="2_ppnwm"]
-[ext_resource type="PackedScene" uid="uid://88lpvooifnho" path="res://scenes/game_components/enemies/base_enemy.tscn" id="3_ca4qd"]
+[ext_resource type="PackedScene" uid="uid://chyftl6gom1ob" path="res://scenes/game_components/enemies/Lenemy.tscn" id="3_7ew46"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_45x3w"]
 texture = ExtResource("1_ecxlm")
@@ -541,7 +541,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6aclv")
 player = ExtResource("2_ppnwm")
-enemy = ExtResource("3_ca4qd")
+Lenemy = ExtResource("3_7ew46")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_dy4ce")

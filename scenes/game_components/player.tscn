@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://3xfwheo2wdfy"]
+[gd_scene load_steps=11 format=3 uid="uid://3xfwheo2wdfy"]
 
 [ext_resource type="Script" path="res://scenes/scripts/game_components_scripts/player.gd" id="1_g1p02"]
 [ext_resource type="Texture2D" uid="uid://bj67ehcxu6lj6" path="res://assets/Warrior_Blue.png" id="1_uqgye"]
@@ -17,6 +17,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [0]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Sprite2D/../attack_col_down:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_ksdqb"]
 resource_name = "attack_down"
@@ -34,6 +46,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [25, 25, 26, 27, 28, 29]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Sprite2D/../attack_col_down:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
 
 [sub_resource type="Animation" id="Animation_fst20"]
 resource_name = "attack_horizontal"
@@ -49,6 +73,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [13, 14, 15, 16, 17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Sprite2D/../attack_col_left:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("%Sprite2D/../attack_col_right:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_xr440"]
@@ -66,6 +114,18 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [37, 38, 39, 40, 41]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("%Sprite2D/../attack_col_up:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_u5c7i"]
@@ -86,18 +146,23 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
+[sub_resource type="Animation" id="Animation_43nox"]
+resource_name = "test"
+length = 0.70001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1vnxy"]
 _data = {
 "RESET": SubResource("Animation_g6a2m"),
 "attack_down": SubResource("Animation_ksdqb"),
 "attack_horizontal": SubResource("Animation_fst20"),
 "attack_up": SubResource("Animation_xr440"),
-"idle": SubResource("Animation_u5c7i")
+"idle": SubResource("Animation_u5c7i"),
+"test": SubResource("Animation_43nox")
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_emkck"]
-radius = 53.0
-height = 106.0
+radius = 38.0
+height = 98.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_g1p02")
@@ -118,6 +183,28 @@ autoplay = "idle"
 speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 2)
 shape = SubResource("CapsuleShape2D_emkck")
+
+[node name="attack_col_down" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-51, 41, -34, 61, -8, 77, 26, 83, 41, 79, 59, 64, 65, 55, 69, 31, 67, 22, 26, 46, 28, 11, -17, 10)
+disabled = true
+
+[node name="attack_col_left" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-41, 26, -66, 40, -79, 39, -85, 28, -88, -2, -84, -23, -71, -48, -49, -68, -23, -76, -21, -54, -47, -19)
+disabled = true
+
+[node name="attack_col_up" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(-4, -70, 29, -63, 67, -32, 66, -23, 41, -8, -29, -42, -66, -5, -70, -11, -52, -51, -17, -70)
+disabled = true
+
+[node name="attack_col_right" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(26, -74, 62, -62, 78, -38, 89, -13, 87, 18, 82, 41, 68, 43, 39, 32, 33, 23, 48, 1)
+disabled = true
 
 [connection signal="animation_finished" from="Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
