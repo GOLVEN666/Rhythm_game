@@ -26,7 +26,6 @@ func move():
 			position.x += DIRECTION
 	else:
 		position.y += DIRECTION
-		#print('vertical')
 
 func _on_area_2d_body_entered(body):
 	queue_free()
