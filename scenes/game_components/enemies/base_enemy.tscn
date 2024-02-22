@@ -1,0 +1,122 @@
+[gd_scene load_steps=10 format=3 uid="uid://88lpvooifnho"]
+
+[ext_resource type="Texture2D" uid="uid://d3omy0cwbkxef" path="res://assets/Warrior_Red.png" id="1_c61lx"]
+[ext_resource type="Script" path="res://scenes/scripts/game_components_scripts/enemies/base_enemy.gd" id="1_etvnd"]
+
+[sub_resource type="Animation" id="Animation_mva34"]
+resource_name = "walk"
+length = 0.60001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_jcbii"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [5]
+}
+
+[sub_resource type="Animation" id="Animation_cvxqw"]
+resource_name = "attack_up"
+length = 0.60001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [42, 43, 44, 45, 46, 47]
+}
+
+[sub_resource type="Animation" id="Animation_o5yoy"]
+resource_name = "attack_down"
+length = 0.60001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [30, 31, 32, 33, 34, 35]
+}
+
+[sub_resource type="Animation" id="Animation_smfwa"]
+resource_name = "attack_horizontal"
+length = 0.60001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [18, 19, 20, 21, 22, 23]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tb8p8"]
+_data = {
+"RESET": SubResource("Animation_jcbii"),
+"attack_down": SubResource("Animation_o5yoy"),
+"attack_horizontal": SubResource("Animation_smfwa"),
+"attack_up": SubResource("Animation_cvxqw"),
+"walk": SubResource("Animation_mva34")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2p5v"]
+size = Vector2(178, 132)
+
+[node name="base_enemy" type="Node2D"]
+script = ExtResource("1_etvnd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(523, 278)
+texture = ExtResource("1_c61lx")
+hframes = 6
+vframes = 8
+frame = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_tb8p8")
+}
+autoplay = "walk"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(522, 281)
+shape = SubResource("RectangleShape2D_g2p5v")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://3xfwheo2wdfy"]
+
+[ext_resource type="Script" path="res://scenes/scripts/game_components_scripts/player.gd" id="1_g1p02"]
+[ext_resource type="Texture2D" uid="uid://bj67ehcxu6lj6" path="res://assets/Warrior_Blue.png" id="1_uqgye"]
+
+[sub_resource type="Animation" id="Animation_g6a2m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ksdqb"]
+resource_name = "attack_down"
+length = 0.5
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.000466224, 0.101643, 0.200373, 0.299963, 0.400582),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [25, 25, 26, 27, 28, 29]
+}
+
+[sub_resource type="Animation" id="Animation_fst20"]
+resource_name = "attack_horizontal"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.101199, 0.201884, 0.300339, 0.402487),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [13, 14, 15, 16, 17]
+}
+
+[sub_resource type="Animation" id="Animation_xr440"]
+resource_name = "attack_up"
+length = 0.5
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100186, 0.20063, 0.30022, 0.400054),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [37, 38, 39, 40, 41]
+}
+
+[sub_resource type="Animation" id="Animation_u5c7i"]
+resource_name = "idle"
+length = 0.60002
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.100405, 0.200408, 0.30078, 0.400401, 0.500336),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1vnxy"]
+_data = {
+"RESET": SubResource("Animation_g6a2m"),
+"attack_down": SubResource("Animation_ksdqb"),
+"attack_horizontal": SubResource("Animation_fst20"),
+"attack_up": SubResource("Animation_xr440"),
+"idle": SubResource("Animation_u5c7i")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_emkck"]
+radius = 53.0
+height = 106.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_g1p02")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -1)
+texture = ExtResource("1_uqgye")
+hframes = 6
+vframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_1vnxy")
+}
+autoplay = "idle"
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_emkck")
+
+[connection signal="animation_finished" from="Sprite2D/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

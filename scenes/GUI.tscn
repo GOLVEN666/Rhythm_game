@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cq1r4ce347u4r"]
+
+[ext_resource type="Script" path="res://scenes/scripts/GUI.gd" id="1_2ucvb"]
+[ext_resource type="PackedScene" uid="uid://xu40hc8kg6a3" path="res://scenes/game_components/rhythm_field.tscn" id="2_nfnf5"]
+
+[node name="GUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ucvb")
+game_packed = ExtResource("2_nfnf5")
