@@ -2,9 +2,9 @@ extends base_enemy
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	horizontal = true
+	horizontal = false
 	DIRECTION = 3
-	flip = false
+	flip = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

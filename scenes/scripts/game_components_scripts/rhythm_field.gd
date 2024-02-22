@@ -1,18 +1,14 @@
 extends Control
 
 @export var player: PackedScene
-@export var Lenemy: PackedScene
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var center = _get_map_size()
 	_create_player(center)
-	_create_enemy()
-	await get_tree().create_timer(1).timeout
-	#_create_enemy()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _get_map_size() -> Vector2:
@@ -28,7 +24,4 @@ func _create_player(center):
 	add_child(player_scene)
 	player_scene.position = center
 
-func _create_enemy():
-	var enemy_scene = Lenemy.instantiate()
-	add_child(enemy_scene)
-	enemy_scene.position = Vector2(-500, 50)
+

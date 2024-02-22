@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuy8y8u1ifyie"]
+
+[ext_resource type="PackedScene" uid="uid://88lpvooifnho" path="res://scenes/game_components/enemies/base_enemy.tscn" id="1_6i5kx"]
+[ext_resource type="Script" path="res://scenes/scripts/game_components_scripts/enemies/Renemy.gd" id="2_lt1wb"]
+
+[node name="Renemy" instance=ExtResource("1_6i5kx")]
+script = ExtResource("2_lt1wb")

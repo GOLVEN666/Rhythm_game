@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://c38fqxc88dsyt"]
+
+[ext_resource type="PackedScene" uid="uid://88lpvooifnho" path="res://scenes/game_components/enemies/base_enemy.tscn" id="1_b3pjx"]
+[ext_resource type="Script" path="res://scenes/scripts/game_components_scripts/enemies/Uenemy.gd" id="2_uvr2h"]
+
+[node name="Uenemy" instance=ExtResource("1_b3pjx")]
+script = ExtResource("2_uvr2h")

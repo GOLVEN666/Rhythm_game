@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6xj20i8dwkld"]
+
+[ext_resource type="PackedScene" uid="uid://88lpvooifnho" path="res://scenes/game_components/enemies/base_enemy.tscn" id="1_lann4"]
+[ext_resource type="Script" path="res://scenes/scripts/game_components_scripts/enemies/Denemy.gd" id="2_pojln"]
+
+[node name="Denemy" instance=ExtResource("1_lann4")]
+script = ExtResource("2_pojln")
